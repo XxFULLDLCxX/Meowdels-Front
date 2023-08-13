@@ -1,4 +1,6 @@
 import { useContext, useState } from 'react';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 import { useNavigate } from 'react-router-dom';
 import { Form, Input, Title } from '../../assets/styles/GlobalStyle';
 import { Infos } from '../../utils/context';
@@ -6,23 +8,22 @@ import { formatCPF, server } from '../../utils/core';
 import Header from '../Header';
 import { AuthContainer } from './AuthContainer';
 
-export default function SignIn() {
+export default function SignUp() {
   const { info, setInfo, ...rest } = useContext(Infos);
   const [user, setUser] = useState({ CPF: '', phone: '' });
   const navigate = useNavigate();
 
   const signup = (e) => {
     e.preventDefault();
-    console.log(e.target.password.value, e.target.confirmPassword.value);
-    if (e.target.password.value !== e.target.confirmPassword.value) {
-      return alert('"Senha" e "Confirme a Senha" devem ser iguais.');
+    if (e.target.password[0].value !== e.target.password[1].value) {
+      return alert('"Password" and "Confirm Password" must match.');
     }
     setInfo({ ...rest, loading: true });
 
     const info = {
       name: e.target.name.value,
       email: e.target.email.value,
-      password: e.target.password.value,
+      password: e.target.password[0].value,
       ...user,
     };
 
@@ -46,18 +47,20 @@ export default function SignIn() {
           <Input placeholder="Name" type="name" name="name" />
           <Input placeholder="Email" type="email" name="email" />
           <Input placeholder="Password" type="password" autoComplete="new-password" name="password" />
-          <Input placeholder="Confirm password" type="password" autoComplete="new-password" name="confirmPassword" />
-          <Input
-            placeholder="Phone"
+          <Input placeholder="Confirm Password" type="password" autoComplete="new-password" name="password" />
+          <PhoneInput
+            country={"br"}
             value={user.phone}
-            onChange={({ target: { value } }) => setUser({ ...user, phone: value.replace(/\D/g, '') })}
-            minLength="10"
-            maxLength="11"
-            pattern="\d+\"
-            name="phone"
+            onChange={(value) => setUser({ ...user, phone: value })}
+            inputProps={{
+              name: 'phone',
+              required: true,
+              autoFocus: true
+            }}
           />
           <Input
             placeholder="CPF"
+            type="text"
             value={formatCPF(user.CPF)}
             onChange={({ target: { value } }) => setUser({ ...user, CPF: value.replace(/\D/g, '') })}
             maxLength="14"
