@@ -26,7 +26,7 @@ export default function SignIn() {
       ...user,
     };
 
-    server.post(`/sign-up`, info)
+    server.post(`/auth/sign-up`, info)
       .then(() => {
         navigate('/sign-in');
         setInfo({ ...rest, loading: false });

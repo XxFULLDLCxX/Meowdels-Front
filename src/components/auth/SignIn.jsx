@@ -17,7 +17,7 @@ export default function SignIn() {
       password: e.target.password.value,
     };
 
-    server.post(`/sign-in`, user)
+    server.post(`/auth/sign-in`, user)
       .then(({ data }) => {
         const { date, token, name } = data;
         localStorage.setItem('user', JSON.stringify(data));
