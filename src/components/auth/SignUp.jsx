@@ -21,7 +21,7 @@ export default function SignUp() {
     setInfo({ ...rest, loading: true });
 
     const info = {
-      name: e.target.name.value,
+      name: e.target.username.value,
       email: e.target.email.value,
       password: e.target.password[0].value,
       ...user,
