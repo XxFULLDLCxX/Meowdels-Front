@@ -1,8 +1,10 @@
 import styled, { createGlobalStyle, css } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+
   body {
     background-color: #efefef;
+    height: 100svh;
   }
   * {
     margin: 0;
@@ -47,6 +49,19 @@ export const Input = styled.input.attrs(({ type }) => ({ required: type !== 'sub
     cursor: pointer;
     background-color: ${({ bg }) => (!bg ? '#aaaaaa' : bg)};
   }
+`;
+
+export const TextArea = styled.textarea`
+  padding: 15px;
+  outline: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  border: 1px solid #dedede;
+  height: 80px;
+  background-color: inherit;
+  resize: none;
 `;
 
 export const center = css`

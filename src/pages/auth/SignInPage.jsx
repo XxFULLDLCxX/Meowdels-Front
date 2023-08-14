@@ -7,7 +7,6 @@ export default function SignInPage() {
     <SingInContainer>
       <SignIn />
       <Link to="/sign-up">Primeira vez? Cadastre-se!</Link>
-      <Link to="#">Esqueceu a Senha?</Link>
     </SingInContainer>
   );
 }

@@ -32,22 +32,4 @@ const HeaderContainer = styled.header`
     text-decoration: none;
     color: #000;
   }
-  div.search {
-    ${center}
-    width: 250px;
-    gap: 10px;
-    @media (max-width: 600px) {
-      display: none;
-    }
-  }
-
-  input[type='search'] {
-    font-size: 14px;
-    display: inline-block;
-    height: 20px;
-    width: 200px;
-    background-color: #dedede;
-    border-radius: 5px;
-    padding: 10px;
-  }
 `;

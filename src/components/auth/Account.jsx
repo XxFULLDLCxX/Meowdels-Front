@@ -1,9 +1,8 @@
 import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Infos } from '../../utils/context';
-import styled from 'styled-components';
-import { useState } from 'react';
 import { MdPerson } from 'react-icons/md';
+import { Link, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { Infos } from '../../utils/context';
 
 export default function Account() {
   const { user } = useContext(Infos);
@@ -11,15 +10,20 @@ export default function Account() {
 
   return (
     <AccountContainer>
-      <button onClick={() => (!user ? navigate('/sign-in') : navigate('/'))}>
-        <MdPerson size="1.5em" />
-        {!user ? 'Entrar' : user.name}
-      </button>
+      <Link to="/sign-in">
+        <button onClick={() => (!user ? navigate('/sign-in') : navigate('/'))}>
+          <MdPerson size="1.5em" />
+          {!user ? 'Entrar' : user.name}
+        </button>
+      </Link>
     </AccountContainer>
   );
 }
 
 const AccountContainer = styled.div`
+  a {
+    text-decoration: none;
+  }
   button {
     width: max-content;
     display: flex;

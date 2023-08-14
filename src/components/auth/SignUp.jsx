@@ -10,7 +10,7 @@ import { AuthContainer } from './AuthContainer';
 
 export default function SignUp() {
   const { info, setInfo, ...rest } = useContext(Infos);
-  const [user, setUser] = useState({ CPF: '', phone: '' });
+  const [user, setUser] = useState({ phone: '', CPF: '' });
   const navigate = useNavigate();
 
   const signup = (e) => {
@@ -44,7 +44,7 @@ export default function SignUp() {
       <AuthContainer>
         <Title>Register</Title>
         <Form onSubmit={signup}>
-          <Input placeholder="Name" type="name" name="name" />
+          <Input placeholder="Name" type="name" name="username" />
           <Input placeholder="Email" type="email" name="email" />
           <Input placeholder="Password" type="password" autoComplete="new-password" name="password" />
           <Input placeholder="Confirm Password" type="password" autoComplete="new-password" name="password" />
@@ -54,8 +54,7 @@ export default function SignUp() {
             onChange={(value) => setUser({ ...user, phone: value })}
             inputProps={{
               name: 'phone',
-              required: true,
-              autoFocus: true
+              required: true
             }}
           />
           <Input
