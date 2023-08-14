@@ -31,7 +31,7 @@ export default function ManageModels() {
               <Item key={m.id} id={m.id} name={m.name} picture={m.picture} description={m.description} />
             ))}
           </ul>
-          {models.length === 0 && (
+          {models?.length === 0 && (
             <h3> Ainda não há Models Disponíveis! Adicione seu Meow!</h3>
           )}
         </ItemsMain>

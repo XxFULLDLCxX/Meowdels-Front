@@ -29,7 +29,7 @@ export default function ManageModels() {
           <ul>
             {models?.map(m => <Item key={m.id} id={m.id} name={m.name} picture={m.picture} available={m.available} />)}
           </ul>
-          {models.length === 0 && (
+          {models?.length === 0 && (
             <h3>Você ainda não adicionou um Model! Adicione seu Meow!</h3>
           )}
         </ItemsMain>
