@@ -7,7 +7,7 @@ import { Infos } from '../../utils/context.jsx';
 import { server } from '../../utils/core.js';
 
 export default function AddModel() {
-  const { user, setInfo, ...info } = useContext(Infos);
+  const { user } = useContext(Infos);
   const add = (e) => {
     e.preventDefault();
     const info = {
@@ -21,8 +21,8 @@ export default function AddModel() {
     server.post('/models', info, {
       headers: { Authorization: `Bearer ${user?.token}` }
     }).then(({ data }) => {
-      setInfo({ ...info, user });
       console.log(data)
+      alert("Meow Adicionado!")
     }).catch((err) => {
       console.log(err);
     });

@@ -7,13 +7,14 @@ import { Infos } from '../../utils/context.jsx';
 import { server } from '../../utils/core.js';
 
 export default function ManageModels() {
-  const { user, models, setInfo, ...info } = useContext(Infos);
+  const { user } = useContext(Infos);
+  const [models, setModels] = useState([])
 
   useEffect(() => {
     server.get('models/manage', {
       headers: { Authorization: `Bearer ${user?.token}` }
     }).then(({ data }) => {
-      setInfo({ ...info, user, models: data });
+      setModels(data);
       console.log(data)
     }).catch((err) => {
       console.log(err);
@@ -28,7 +29,7 @@ export default function ManageModels() {
           <ul>
             {models?.map(m => <Item key={m.id} id={m.id} name={m.name} picture={m.picture} available={m.available} />)}
           </ul>
-          {Object.entries(!models ? {} : models).length === 0 && (
+          {models.length === 0 && (
             <h3>Você ainda não adicionou um Model! Adicione seu Meow!</h3>
           )}
         </ItemsMain>
@@ -120,6 +121,9 @@ const ItemLi = styled.li`
     img {
       width: 250px;
       height: 250px;
+      @media (max-width: 527px) {
+        width: 80%;
+      }
       background-color: #ffffff;
       border-radius: 10px;
       filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
@@ -154,11 +158,5 @@ const ItemLi = styled.li`
     left: 15px;
     border-radius: 5px;
     background-color: #aaaaaa77;
-  }
-
-  @media (max-width: 689px) {
-    &:last-child {
-      margin-bottom: 50px;
-    }
   }
 `;
